@@ -1,9 +1,9 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <!--<TestDemo></TestDemo>-->
-    <!--<hr/>-->
-    <!--<TestAnimate>lalalla</TestAnimate>-->
+    <TestDemo></TestDemo>
+    <hr/>
+    <TestAnimate>lalalla</TestAnimate>
   </div>
 
 </template>
@@ -14,7 +14,7 @@
   name: 'About',
     components: {
       TestDemo,
-        TestAnimate
+      TestAnimate
     }
   }
 </script>

@@ -1,36 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-        <el-row>
-          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <div id="nav-top">
-                <transition>
-                <h1 :class="H1_class" id="H1_id">好好学习 天天向上!</h1>
-                </transition>
-            </div>
-          </el-col>
-      </el-row>
-      <el-row>
-          <el-col :xs="0" :sm="3" :md="3" :lg="3" :xl="3">
-            <div class="Non-existent"><p>占位符</p></div>
-          </el-col>
-          <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
-              <div id="app_nav">
-                  <ul id="app_nav_ul">
-                    <li class="app_nav_li active"><router-link to="/">我的文章</router-link></li>
-                    <li class="app_nav_li"><router-link to="/About">个人信息</router-link></li>
-                    <li class="app_nav_li"><router-link to="">给我留言</router-link></li>
-                    <li class="app_nav_li"><router-link to="">正在开发</router-link></li>
-                    <li class="app_nav_li"><router-link to="">正在开发</router-link></li>
-                </ul>
-              </div>
-          </el-col>
-          <el-col :xs="0" :sm="3" :md="3" :lg="3" :xl="3">
-            <div class="Non-existent"><p>占位符</p></div>
-          </el-col>
-      </el-row>
-    </div>
-    <router-view class="router_view"/>
+      <div id="nav-headed">
+          <el-menu
+                  :default-active="activeIndex2"
+                  class="el-menu-demo"
+                  mode="horizontal"
+                  @select="handleSelect"
+                  background-color="#0A425E"
+                  text-color="#fff"
+                  active-text-color="#fff"
+                  router="true"
+          >
+              <!--<el-menu-item index="Home">主页</el-menu-item>-->
+              <el-menu-item index="Myhome">主页</el-menu-item>
+              <!--<el-submenu index="2">-->
+                  <!--<template slot="title">我的工作台</template>-->
+                  <!--<el-menu-item index="2-1">选项1</el-menu-item>-->
+                  <!--<el-menu-item index="2-2">选项2</el-menu-item>-->
+                  <!--<el-menu-item index="2-3">选项3</el-menu-item>-->
+                  <!--<el-submenu index="2-4">-->
+                      <!--<template slot="title">选项4</template>-->
+                      <!--<el-menu-item index="2-4-1">选项1</el-menu-item>-->
+                      <!--<el-menu-item index="2-4-2">选项2</el-menu-item>-->
+                      <!--<el-menu-item index="2-4-3">选项3</el-menu-item>-->
+                  <!--</el-submenu>-->
+              <!--</el-submenu>-->
+              <el-menu-item index="About">关于</el-menu-item>
+              <el-menu-item index="Login">登录</el-menu-item>
+          </el-menu>
+      </div>
+      <router-view class="router_view"/>
   </div>
 </template>
 <script>
@@ -39,7 +38,12 @@
         data(){
             return{
                 H1_class:'H1_class',
-                activeIndex:'1',
+                activeIndex2:'1',
+            }
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
             }
         },
         created:function () {

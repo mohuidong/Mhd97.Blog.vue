@@ -13,6 +13,7 @@ import VueAweSomeSwiper from 'vue-awesome-swiper'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
+import axios from "axios"
 //引入animate.css
 import animate from 'animate.css'
 
@@ -20,6 +21,7 @@ Vue.use(animate);
 Vue.use(VueAweSomeSwiper);
 Vue.use(ElementUI);
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios;
 
 new Vue({
   router,
