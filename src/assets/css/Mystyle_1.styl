@@ -3,13 +3,14 @@ html
   font-size 16px
 body
   background-image url("../images/bg.jpg")
+  background-repeat:no-repeat
 *
   padding 0
   margin 0
 @media screen and (max-width: 480px)
   html
-    font-size 8px
-    padding 5px
+    font-size 9px
+    padding 3px
   *
     padding 0
     margin 0
@@ -26,14 +27,15 @@ body
   //空白的占位符
   .Non-existent>p
     color transparent
+    height 6rem
   #app-headed
     a
       text-decoration none
   #app_nav
     #app_nav_ul
-      margin-top 10rem
+      width 100%
       height 6rem
-      margin auto
+
     .app_nav_li
       float left
       list-style none
@@ -43,11 +45,11 @@ body
       padding 1rem 1rem
       position:relative
     a,a:link
-        color #000
+        color #fff
         font-size 1.5rem
         text-decoration none
         text-align center
-    //绿色三角下标
+    //三角下标
     a:after
       content ""
       width 0px
@@ -83,24 +85,27 @@ body
       border-bottom:0.6rem solid #fff
 
 #H1_id
-    font-size 3rem
-    color #000
-    text-shadow 2px 2px 2px #9ea09d
+  margin-top 16rem
+  font-size 2rem
+  color #fff
+  text-shadow 2px 2px 2px #9ea09d
+#home-arrow-down
+  .el-icon-arrow-down
+    color #fff
+    font-size 2rem
+    margin-top 25rem
 
-//组件home
-.home
+//homeIndex
+#home-content
+  width 100%
+  margin-top 10rem
+  background-color #fff
+  text-align center
   .home_body
+    margin 2rem auto
     background-color rgba(0,0,0,0.5)
     box-shadow 2px 2px rgba(15, 54, 142, 0.63)
     border-radius 10px
-  .home_menu
-    width 20rem
-  .text_card
-    background-color beige
-    margin-top 1rem
-
-
-
 //组件Header
 .row_header
 
@@ -121,7 +126,6 @@ body
   /*position:fixed;*/
   background-color: #9CC1F1;
   width: 100%;
-  color: #333;
   text-align: center;
   line-height: 60px;
 }
@@ -131,9 +135,25 @@ body
 a{
   text-decoration: none;
 }
-.el-main{
-  text-align: left;
-}
-#loginbutton a{
+#loginbutton,#registerbutton a{
   color: white;
 }
+.login
+  .el-tabs
+    text-align center
+    border-radius 10px
+    width 80%
+    height 80%
+    background-color #fff
+    margin 20px auto
+    .el-main
+      text-align center
+    .el-tabs__item
+      text-align center
+    #registerbutton a
+      color: white
+    #loginbutton a
+      color: white
+
+
+

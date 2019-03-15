@@ -17,25 +17,16 @@ export default new Router({
       {
         path: '/about',
         name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
       },
       {
           path: '/Login',
           name: 'login',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
           component: () => import(/* webpackChunkName: "about" */ './views/Login.vue')
       },
       {
           path: '/MyHome',
           name: 'MyHome',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
           component: () => import(/* webpackChunkName: "about" */ './views/Myhome.vue'),
           children:[
               {
@@ -48,11 +39,6 @@ export default new Router({
                   name: 'homePost',
                   component: () => import(/* webpackChunkName: "about" */ './views/Home/HomePost.vue'),
               },
-              // {
-              //     path: 'rating',
-              //     name: 'rating',
-              //     component: rating
-              // }
           ]
       }
   ]
