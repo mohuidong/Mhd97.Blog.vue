@@ -23,7 +23,7 @@
             <el-col class="zhanwei" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <div id="nav-top">
                     <transition>
-                        <h1 :class="H1_class" id="H1_id">Mhd97<br>非淡泊无以明志 非宁静无以致远</h1>
+                        <p :class="H1_class" id="H1_id">Mhd97<br>非淡泊无以明志 非宁静无以致远</p>
                     </transition>
                 </div>
             </el-col>
