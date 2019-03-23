@@ -1,5 +1,6 @@
 <template>
     <div id="nav">
+
         <el-row>
             <el-col :xs="0" :sm="3" :md="3" :lg="3" :xl="3">
                 <div class="Non-existent"><p>占位符</p></div>
@@ -19,6 +20,7 @@
                 <div class="Non-existent"><p>占位符</p></div>
             </el-col>
         </el-row>
+
         <el-row>
             <el-col class="zhanwei" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <div id="nav-top">
@@ -28,13 +30,15 @@
                 </div>
             </el-col>
         </el-row>
+
         <el-row>
             <div id="home-arrow-down">
                 <transition>
-                <i :class="homeArrowDown"></i>
+                    <i :class="homeArrowDown"></i>
                 </transition>
             </div>
         </el-row>
+
         <router-view></router-view>
     </div>
 </template>
@@ -62,7 +66,8 @@
             //进入页面animated插件特效
             this.homeArrowDown = 'el-icon-arrow-down animated wobble';
             this.H1_class='H1_class animated lightSpeedIn';
-        },
+        }
+
     }
 </script>
 

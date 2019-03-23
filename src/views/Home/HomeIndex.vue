@@ -4,7 +4,7 @@
             <el-row>
                 <el-container>
                     <el-main>
-                        <el-container v-for="item in 5" class="text_card">
+                        <el-container :key="index" v-for="(item,index) in 5" class="text_card">
                             <el-main>
                                 <div >
                                     <h2>标题{{item}}</h2><hr>

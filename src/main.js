@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/Mystyle_1.styl';
 //引入vue-awesome-swiper
 import VueAweSomeSwiper from 'vue-awesome-swiper'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
 import axios from "axios"
