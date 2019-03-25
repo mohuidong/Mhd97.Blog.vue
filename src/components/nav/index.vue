@@ -1,5 +1,5 @@
 <template>
-    <div id="nav">
+    <div id="nav" :class="{ceiling:ceiling}">
         <el-row>
             <el-col :xs="0" :sm="3" :md="3" :lg="3" :xl="3">
                 <div class="Non-existent"><p>占位符</p></div>
@@ -24,18 +24,7 @@
 
 <script>
     export default {
-        // data(){
-        //     return{
-        //         H1_class:'H1_class',
-        //         homeArrowDown:'el-icon-arrow-down',
-        //         activeIndex2:'1',
-        //     }
-        // },
-        // methods: {
-        //     handleSelect(key, keyPath) {
-        //         console.log(key, keyPath);
-        //     }
-        // },
+        props:['ceiling'],
         created:function () {
             // //进入页面animated插件特效
             // this.homeArrowDown = 'el-icon-arrow-down animated wobble';
@@ -51,6 +40,17 @@
     top 0
     right: 0;
     z-index 100
+    &.ceiling
+        opacity 0.85
+        background: #fff
+        border-bottom: 1px solid #bababa;
+        #app_nav .app_nav_li a
+            color: #333
+            &:hover
+                text-shadow none
+                &:after
+                    border-bottom: 0.6rem solid #333;
+
     #nav-bottom
         height 100%
         width 100%
@@ -64,6 +64,7 @@
     #app_nav
         #app_nav_ul
             width 100%
+            min-width 575px
             height 6rem
 
         .app_nav_li

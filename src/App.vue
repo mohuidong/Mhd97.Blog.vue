@@ -3,7 +3,9 @@
       <div id="nav-headed">
 
       </div>
-      <router-view class="router_view"/>
+      <transition name="el-zoom-in-bottom">
+          <router-view class="router_view"/>
+      </transition>
   </div>
 </template>
 <script>
