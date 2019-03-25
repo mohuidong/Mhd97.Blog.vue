@@ -8,6 +8,22 @@
                 <div class="time">{{time}}</div>
             </div>
             <div class="content" v-html="content"></div>
+            <div class="article-reply">
+                <div class="reply-header">
+                    <h1>评论</h1>
+                </div>
+                <div class="reply-body">
+                    <ul class="reply-list" v-for="(item) in reply" :key="item['reply_id']">
+                        <li class="reply-item">
+                            <span class="name">{{item['user_name']}}</span>
+                            |
+                            <span class="time">{{handleFormatDateMinuteSec(item['created_at'])}}</span>
+                            <br/>
+                            <p>{{item['content']}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </main>
         <myFooter></myFooter>
 
@@ -32,8 +48,8 @@
                 title:'',
                 time:'',
                 content:'',
-                loading:true
-
+                loading:true,
+                reply:[]
             }
         },
         created:function () {
@@ -69,6 +85,26 @@
                 let date = new Date(stamp * 1000)
                 if ( stamp === undefined ) { return ''}
                 return `${date.getFullYear()}-${ date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)}-${date.getDate() >= 10 ? date.getDate() : '0' + date.getDate()} ${date.getHours()>=10?date.getHours(): '0'+date.getHours()}:${date.getMinutes()>=10?date.getMinutes():'0'+date.getMinutes()}:${date.getSeconds()>=10?date.getSeconds():'0'+date.getSeconds()}`
+            },
+            getData:function (page) {
+                if(this.loading){
+                    return
+                }
+                this.loading = true
+                axios.get('/v1/reply?debug=1&perPage=5&page='+page).then(
+                    (res)=>{
+                        const data = res.data
+                        this.posts = [...data['items']]
+                        this.currentPage = data['_meta']['currentPage']
+                        this.maxPage = data['_meta']['pageCount']
+                        this.loading = false
+                        this.first = false
+                    },
+                    ()=>{
+                        this.loading = false
+                        this.first = false
+                    }
+                )
             },
         }
     }

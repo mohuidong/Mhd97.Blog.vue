@@ -27,7 +27,6 @@
                 </div>
             </article>
 
-
         </main>
         <myPage
             :currentPage="currentPage"

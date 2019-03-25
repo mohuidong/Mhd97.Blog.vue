@@ -7,11 +7,11 @@
             <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
                 <div id="app_nav">
                     <ul id="app_nav_ul">
-                        <li class="app_nav_li"><router-link to="">登&nbsp;&nbsp;录</router-link></li>
+                        <li class="app_nav_li"><router-link to="/login">登&nbsp;&nbsp;录</router-link></li>
                         <li class="app_nav_li active"><router-link to="/homeIndex">主&nbsp;&nbsp;页</router-link></li>
-                        <li class="app_nav_li"><router-link to="/homePost">我的文章</router-link></li>
-                        <li class="app_nav_li"><router-link to="">给我留言</router-link></li>
-                        <li class="app_nav_li"><router-link to="">正在开发</router-link></li>
+                        <li class="app_nav_li"><router-link to="/homePost">分&nbsp;&nbsp;类</router-link></li>
+                        <li class="app_nav_li"><router-link to="/issue">问&nbsp;&nbsp;答</router-link></li>
+                        <li class="app_nav_li"><router-link to="/about">打&nbsp;&nbsp;赏</router-link></li>
                     </ul>
                 </div>
             </el-col>

@@ -1,12 +1,12 @@
 <template>
     <footer>
         <span class="footer-left">
-            <a href="javascript:;">rbs负责人博客</a>
+            <a href="javascript:;">Mhd97.top</a>
             © 2019
         </span>
         <span class="footer-right">
             Proudly Made By
-            <a href="javascript:;">大神莫惠东</a>
+            <a href="javascript:;">Mohuidong</a>
         </span>
     </footer>
 

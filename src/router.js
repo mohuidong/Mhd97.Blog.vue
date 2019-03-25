@@ -20,6 +20,11 @@ export default new Router({
           component: () => import( './views/Article.vue'),
       },
       {
+          path: '/issue',
+          name: 'issue',
+          component: () => import(/* webpackChunkName: "about" */ './views/Issue.vue')
+      },
+      {
         path: '/about',
         name: 'about',
         component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
@@ -32,7 +37,7 @@ export default new Router({
       {
           path: '/MyHome',
           name: 'MyHome',
-          component: () => import(/* webpackChunkName: "about" */ './views/Myhome.vue'),
+          component: () => import(/* webpackChunkName: "about" */ './views/NewHome.vue'),
           children:[
               {
                   path: '/homeIndex',

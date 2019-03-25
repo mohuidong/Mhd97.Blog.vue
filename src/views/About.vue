@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <myNav :ceiling="ceiling"></myNav>
     <h1>This is an about page</h1>
     <TestDemo></TestDemo>
     <hr/>
