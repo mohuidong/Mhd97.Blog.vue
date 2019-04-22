@@ -7,11 +7,14 @@
             <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
                 <div id="app_nav">
                     <ul id="app_nav_ul">
-                        <li class="app_nav_li"><router-link to="/login">登&nbsp;&nbsp;录</router-link></li>
+                        <li class="app_nav_li" v-if="isLoginStatus"><a href="javascript:;" @click="loginOut()">退&nbsp;&nbsp;出</a></li>
+                        <li class="app_nav_li" v-else><router-link to="/login">登&nbsp;&nbsp;录</router-link></li>
                         <li class="app_nav_li active"><router-link to="/homeIndex">主&nbsp;&nbsp;页</router-link></li>
-                        <li class="app_nav_li"><router-link to="/homePost">分&nbsp;&nbsp;类</router-link></li>
+                        <li class="app_nav_li"><router-link to="/class">分&nbsp;&nbsp;类</router-link></li>
                         <li class="app_nav_li"><router-link to="/issue">问&nbsp;&nbsp;答</router-link></li>
-                        <li class="app_nav_li"><router-link to="/about">打&nbsp;&nbsp;赏</router-link></li>
+                        <li class="app_nav_li" v-if="isLoginStatus"><router-link to="/me">我&nbsp;&nbsp;的</router-link></li>
+                        <li class="app_nav_li"><router-link to="/about">关&nbsp;&nbsp;于</router-link></li>
+                        <li class="app_nav_li"><router-link to="/reward">打&nbsp;&nbsp;赏</router-link></li>
                     </ul>
                 </div>
             </el-col>
@@ -25,10 +28,28 @@
 <script>
     export default {
         props:['ceiling'],
+        data(){
+            return {
+                isLoginStatus : false,
+            }
+        },
+        methods: {
+            isLogin:function () {
+                let token = localStorage.getItem('access_token');
+                if (token !== null) {
+                    this.isLoginStatus = true;
+                }
+            },
+            loginOut:function () {
+                localStorage.removeItem('access_token');
+                let token = localStorage.getItem('access_token');
+                if (token === null) {
+                    this.isLoginStatus = false;
+                }
+            }
+        },
         created:function () {
-            // //进入页面animated插件特效
-            // this.homeArrowDown = 'el-icon-arrow-down animated wobble';
-            // this.H1_class='H1_class animated lightSpeedIn';
+            this.isLogin()
         },
     }
 </script>

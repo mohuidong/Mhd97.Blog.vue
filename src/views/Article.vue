@@ -10,18 +10,33 @@
             <div class="content" v-html="content"></div>
             <div class="article-reply">
                 <div class="reply-header">
-                    <h1>评论</h1>
+                    <h1>评论 <el-button style="float: right" @click="likesUp()" type="primary"><span v-if="isLikes">已点赞{{likes}}</span><span v-else>点赞{{likes}}</span></el-button></h1>
                 </div>
                 <div class="reply-body">
                     <ul class="reply-list" v-for="(item) in reply" :key="item['reply_id']">
                         <li class="reply-item">
-                            <span class="name">{{item['user_name']}}</span>
+                            <span class="name">{{item['userName']}}</span>
                             |
                             <span class="time">{{handleFormatDateMinuteSec(item['created_at'])}}</span>
                             <br/>
                             <p>{{item['content']}}</p>
                         </li>
                     </ul>
+                    <div class="reply-input">
+                        <el-form  label-width="80px" :model="sendReply" status-icon :rules="rules" ref="sendReply">
+
+                                <el-input
+                                        type="textarea"
+                                        placeholder="请输入内容"
+                                        :autosize="{ minRows: 3, maxRows: 10}"
+                                        v-model="sendReply.replyContent">
+                                </el-input>
+
+
+                                <el-button type="primary" plain @click="submitForm('sendReply')">提交</el-button>
+
+                        </el-form>
+                    </div>
                 </div>
             </div>
         </main>
@@ -34,7 +49,7 @@
 <script>
     import myNav from '@/components/nav'
     import myFooter from '@/components/footer'
-    import axios from 'axios'
+    import axios from '../axios/index'
     export default {
         name: "Article",
         components:{
@@ -42,34 +57,53 @@
             myFooter
         },
         data:function(){
+            var validateReply = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入用户名'));
+                }else if(value.length > 55){
+                    callback(new Error('请输入不超过55位字符'));
+                }else {
+                    callback();
+                }
+            };
             return {
                 ceiling:false,
                 img:'',
                 title:'',
                 time:'',
                 content:'',
+                likes:'',
                 loading:true,
-                reply:[]
+                textArea:'',
+                isLikes:false,
+                sendReply:{
+                    replyContent:''
+                },
+                reply:[],
+
+                rules:{
+                    replyContent:[{validator:validateReply,trigger:'blur'}],
+                },
             }
         },
         created:function () {
             this.listenScroll()
-            axios.get('/v1/posts/'+this.$route.params['id']+'?debug=1').then(
+            this.getData(1)
+            this.isLikesUp()
+            axios.get('/v1/posts/'+this.$route.params['id']+'?').then(
                 (res)=>{
                     const data = res.data
                     this.img = data['label_img']
                     this.title = data['title']
                     this.time = this.handleFormatDateMinuteSec(data['created_at'])
                     this.content = data['content']
+                    this.likes = data['likes']
                     this.loading = false
                 },
                 () =>{
                     this.loading = false
-
                 }
             )
-
-
         },
         methods:{
             listenScroll:function () {
@@ -87,24 +121,83 @@
                 return `${date.getFullYear()}-${ date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)}-${date.getDate() >= 10 ? date.getDate() : '0' + date.getDate()} ${date.getHours()>=10?date.getHours(): '0'+date.getHours()}:${date.getMinutes()>=10?date.getMinutes():'0'+date.getMinutes()}:${date.getSeconds()>=10?date.getSeconds():'0'+date.getSeconds()}`
             },
             getData:function (page) {
-                if(this.loading){
-                    return
-                }
                 this.loading = true
-                axios.get('/v1/reply?debug=1&perPage=5&page='+page).then(
+                axios.get('/v1/replies/'+this.$route.params['id'] +'?perPage=5&page='+page).then(
                     (res)=>{
                         const data = res.data
-                        this.posts = [...data['items']]
+                        this.reply = [...data['items']]
                         this.currentPage = data['_meta']['currentPage']
                         this.maxPage = data['_meta']['pageCount']
                         this.loading = false
                         this.first = false
                     },
-                    ()=>{
+                    (err)=>{
                         this.loading = false
                         this.first = false
                     }
                 )
+            },
+            likesUp:function () {
+                axios.post('/v1/posts/likes?id='+this.$route.params['id']).then(
+                    (res)=>{
+                        if (res.data.likes_status === 1) {
+                            this.likes += 1;
+                            this.isLikes = true;
+                            this.$elementMessage('感谢大佬的肯定', 'success')
+                        }else if (res.data.likes_status === 2) {
+                            this.likes -= 1;
+                            this.isLikes = false;
+                            this.$elementMessage('这真是一个该死的消息', 'info')
+                        }
+                        
+                    },
+                    (err)=>{
+                        if (err.data.status === 401) {
+                            this.$elementMessage('请先登陆', 'warning')
+                        } else {
+                            this.$elementMessage('操作失败请联系管理员', 'warning')
+                        }
+
+                    }
+                )
+            },
+            isLikesUp:function () {
+                let token = localStorage.getItem('access_token');
+                console.log(token);
+                if (token !== null) {
+                    console.log(111)
+                    axios.get('/v1/likes/'+this.$route.params['id']+'?').then(
+                        (res)=>{
+                            if (res.data.status === 1) {
+                                this.isLikes = true
+                            }
+                        },
+                        (err)=>{
+                            this.$elementMessage('出现一点小问题', 'warning')
+                        }
+                    )
+                }
+            },
+            submitForm(formName) {
+                let vm = this
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        axios.post('/v1/replies?id=' + this.$route.params['id'],{
+                            replyContent:this.sendReply.replyContent,
+                        }).then(function(response){
+                            if (response.status === 200) {
+                                vm.$elementMessage('评论成功', 'success')
+                            } else {
+                                vm.$elementMessage('网络错误请联系管理员', 'warning')
+                            }
+                        }).catch(function(error){
+                            vm.$elementMessage('评论失败', 'warning')
+                        });
+                    } else {
+                        alert('有信息填写错误请重新填写');
+                        return false;
+                    }
+                });
             },
         }
     }
@@ -137,5 +230,11 @@
         .content
             margin: 5rem 0;
             font-size: 1.2rem;
+    .reply-input
+        margin-top 20px
+        .el-button
+            margin-top 20px
+
+
 
 </style>

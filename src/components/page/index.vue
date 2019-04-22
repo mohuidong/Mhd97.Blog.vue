@@ -3,12 +3,12 @@
         <span
                 :class="{'page-button':true,'hide':currentPage===1}"
                 @click="()=>{ this.$emit('pageTurning','prevPage') }"
-        >← Newer Post</span>
+        >← 上一页 </span>
         <span> Page {{currentPage}} of {{maxPage}} </span>
         <span
                 :class="{'page-button':true,'hide':maxPage===currentPage}"
                 @click="()=>{ this.$emit('pageTurning','nextPage') }"
-        >Older Post →</span>
+        >下一页 →</span>
     </div>
 </template>
 <script>

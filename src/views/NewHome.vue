@@ -42,7 +42,7 @@
     import myNav from '@/components/nav'
     import myFooter from '@/components/footer'
     import myPage from '@/components/page'
-    import axios from 'axios'
+    import axios from '../axios/index'
     export default {
         name: "NewHome",
         components: {
@@ -83,7 +83,7 @@
                 // this.posts = []
                 // window.scrollTo(0,0);
                 this.loading = true
-                axios.get('/v1/posts?debug=1&perPage=5&page='+page).then(
+                axios.get('/v1/posts?perPage=5&page='+page).then(
                     (res)=>{
                         const data = res.data
                         this.posts = [...data['items']]
