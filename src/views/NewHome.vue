@@ -5,7 +5,7 @@
             <img class="bg" src="../assets/images/bg.jpg" alt="" >
             <div class="slogan">
                 <transition>
-                    <p :class="H1_class" id="H1_id">Mhd97<br>非淡泊无以明志 非宁静无以致远</p>
+                    <p :class="H1_class" id="H1_id">{{titleData.home_signature_title}}<br>{{titleData.home_signature_content}}</p>
                 </transition>
             </div>
             <div class="down" @click="scrollTo800">
@@ -59,6 +59,7 @@
                 maxPage:1,
                 loading:false,
                 ceiling:false,
+                titleData:[],
                 posts:[],
                 first:true
             }
@@ -98,6 +99,19 @@
                     }
                 )
             },
+            getTitleData:function () {
+                axios.get('/v1/system-settings?').then(
+                    (res)=>{
+                        this.titleData = res.data
+                        this.loading = false
+                        this.first = false
+                    },
+                    ()=>{
+                        this.loading = false
+                        this.first = false
+                    }
+                )
+            },
             handleFormatDateMinuteSec:(stamp)=>{
                 let date = new Date(stamp * 1000)
                 if ( stamp === undefined ) { return ''}
@@ -122,6 +136,7 @@
             this.H1_class='H1_class animated lightSpeedIn';
             this.listenScroll()
             this.getData(1)
+            this.getTitleData()
         }
 
     }

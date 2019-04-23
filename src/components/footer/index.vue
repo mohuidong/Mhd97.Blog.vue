@@ -15,6 +15,27 @@
 <script>
     export default {
         name: "myFooter",
+        data:function () {
+            return {
+                footerData:[],
+            }
+        },
+        // created:function () {
+        //     this.getFooterData()
+        // },
+        // methods: {
+        //     getFooterData:function () {
+        //         axios.get('/v1/system-settings?').then(
+        //             (res)=>{
+        //                 this.footerData = res.data
+        //                 this.first = false
+        //             },
+        //             ()=>{
+        //                 this.first = false
+        //             }
+        //         )
+        //     },
+        // }
     }
 </script>
 

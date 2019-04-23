@@ -163,9 +163,7 @@
             },
             isLikesUp:function () {
                 let token = localStorage.getItem('access_token');
-                console.log(token);
                 if (token !== null) {
-                    console.log(111)
                     axios.get('/v1/likes/'+this.$route.params['id']+'?').then(
                         (res)=>{
                             if (res.data.status === 1) {

@@ -1,20 +1,20 @@
 <template>
-    <div class="login">
+    <div class="Forget">
         <el-container>
-            <el-header><router-link to="MyHome"><i class="el-icon-arrow-left"></i></router-link>欢迎登陆</el-header>
+            <el-header><router-link to="login"><i class="el-icon-arrow-left"></i></router-link>找回密码</el-header>
             <el-main>
                 <el-row><img src="" alt="" width="100%"></el-row>
-                <el-form  label-width="80px" :model="loginuser" status-icon :rules="rules" ref="loginuser">
+                <el-form  label-width="80px" :model="forget" status-icon :rules="rules" ref="forget">
                     <el-form-item label="用户名：" prop="username">
-                            <el-input v-model="loginuser.username"></el-input>
+                            <el-input v-model="forget.username"></el-input>
                     </el-form-item>
                     <el-form-item label="密  码：" prop="password">
-                        <el-input v-model="loginuser.password" type="password"></el-input>
+                        <el-input v-model="forget.password" type="password"></el-input>
                     </el-form-item>
-                    <el-form-item id="loginButton">
-                        <el-button type="primary" @click="submitform('loginuser')">登录</el-button>
+                    <el-form-item id="forgetButton">
+                        <el-button type="primary" @click="submitform('forget')">提交</el-button>
                         <!-- <el-button type="primary" @click="submitform('loginuser')">登录</el-button> -->
-                        <el-button type="danger" ><router-link to="forget">忘记密码？</router-link></el-button>
+                        <el-button type="danger" ><router-link to="login">去登陆</router-link></el-button>
                         <el-button type="primary" ><router-link to="register">注册</router-link></el-button>
                     </el-form-item>
                 </el-form>
@@ -25,9 +25,8 @@
 
 <script>
     import axios from '../axios/index'
-    import { mapMutations } from 'vuex';
     export default {
-        name: "Login" ,
+        name: "Forget" ,
         data(){
             //用户名验证
             var validateUser = (rule, value, callback) => {
@@ -45,17 +44,14 @@
             var validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
-                }else if(value.length<4||value.length>16){
+                }else if(value.length < 6|| value.length > 16){
                     callback(new Error('请输入6到16位字符'));
                 } else {
-                    // if (this.newRag.password !== '') {
-                    //   this.$refs.newRag.validateField('password');
-                    // }
                     callback();
                 }
             };
             return{
-                loginuser:{
+                forget:{
                     username:'',
                     password:''
                 },
@@ -64,33 +60,23 @@
                     username:[{validator:validateUser,trigger:'blur'}],
                     password:[{validator:validatePass,trigger:'blur'}],
                 },
-                activeName: 'login',
-                token:'',
-                uid:'',
-                username:''
             };
         },
         methods:{
-            ...mapMutations(['changeLogin']),
             submitform(forname){
                 let vm = this
                 this.$refs[forname].validate((valid) =>{
                     if (valid) {
-                        axios.post('/v1/sessions?',{
-                        username:this.loginuser.username,
-                        password:this.loginuser.password
+                        axios.put('/v1/users/reset?',{
+                        username:this.forget.username,
+                        password:this.forget.password
                           }).then(function(response){
                               if (response.status === 200) {
-                                  let resData = response.data;
-                                  vm.token = resData['access_token'];
-                                  vm.changeLogin({access_token:vm.token});
-                                  vm.$router.push({  //核心语句
-                                      path:'/',   //跳转的路径
-                                  })
+                                  vm.$elementMessage('修改成功', 'success')
                               }
                           }).catch(function(error){
-                            let errorInfo = error.message
-                            vm.$elementMessage(errorInfo, 'warning')
+                              console.log(error)
+                            // vm.$elementMessage(error.message, 'warning')
                           });
                     }else{
                         alert('请重新填写正确的信息');
@@ -114,9 +100,8 @@
 
     .el-main
         font-size: 36px;
-        #loginButton a
+        #forgetButton a
             color white
-
     .el-header
         margin-top 200px
         color: #333;

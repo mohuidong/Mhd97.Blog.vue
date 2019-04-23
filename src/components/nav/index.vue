@@ -9,7 +9,7 @@
                     <ul id="app_nav_ul">
                         <li class="app_nav_li" v-if="isLoginStatus"><a href="javascript:;" @click="loginOut()">退&nbsp;&nbsp;出</a></li>
                         <li class="app_nav_li" v-else><router-link to="/login">登&nbsp;&nbsp;录</router-link></li>
-                        <li class="app_nav_li active"><router-link to="/homeIndex">主&nbsp;&nbsp;页</router-link></li>
+                        <li class="app_nav_li active"><router-link to="/MyHome">主&nbsp;&nbsp;页</router-link></li>
                         <li class="app_nav_li"><router-link to="/class">分&nbsp;&nbsp;类</router-link></li>
                         <li class="app_nav_li"><router-link to="/issue">问&nbsp;&nbsp;答</router-link></li>
                         <li class="app_nav_li" v-if="isLoginStatus"><router-link to="/me">我&nbsp;&nbsp;的</router-link></li>

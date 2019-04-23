@@ -3,8 +3,8 @@ import store from '../store/index'
 import md5 from 'js-md5'
 import router from "../router";
 
-// const baseURL =  'http://192.168.1.177:8822'
-axios.defaults.baseURL = '/api/'
+const baseURL =  'http://api.mhd97.top/'
+// axios.defaults.baseURL = 'http://api.mhd97.top/'
 
 
 // 添加响应拦截器（想改变回复再接收，就拦截response）
@@ -178,7 +178,7 @@ export default {
             ...opt,
             method:"GET",
             url:this.handleUrl(url),
-
+            baseURL
         })
     },
     post:function(url,data,opt={}){
@@ -199,6 +199,7 @@ export default {
             method:"POST",
             url:this.handleUrl(url),
             data:data,
+            baseURL
         })
     },
     put:function(url,data,opt={}){
@@ -219,6 +220,7 @@ export default {
             method:"PUT",
             url:this.handleUrl(url),
             data:data,
+            baseURL
         })
     },
     delete:function(url,data,opt={}){
@@ -239,6 +241,7 @@ export default {
             method:"DELETE",
             url:this.handleUrl(url),
             data:data,
+            baseURL
         })
     },
     jsonp:function(options){
