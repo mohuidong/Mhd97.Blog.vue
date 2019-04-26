@@ -6,13 +6,23 @@
             </div>
         <main>
             <div class="about-main">
-              <br>
-              <h2>邮箱:{{systemData.customer_service_email}}</h2>
-              <br>
-              <h2>手机:{{systemData.customer_service_phone}}</h2>
-              <br>
-              <h2>微信号:{{systemData.wechat}}</h2>
-              <br>
+                <br>
+                <h2>网站标题:{{systemData.website_title}}</h2>
+                <br>
+                <h2>邮箱:{{systemData.customer_service_email}}</h2>
+                <br>
+                <h2>手机:{{systemData.customer_service_phone}}</h2>
+                <br>
+                <h2>微信号:{{systemData.wechat}}</h2>
+                <br>
+                <h2>QQ:{{systemData.key_qq}}</h2>
+                <br>
+                <h2>开发语言:{{systemData.key_language}}</h2>
+                <br>
+                <h2>github:{{systemData.key_github}}</h2>
+                <br>
+                <h2>注册人数:{{systemData.count_registrations}}</h2>
+                <br>
             </div>
         </main>
         <myFooter></myFooter>

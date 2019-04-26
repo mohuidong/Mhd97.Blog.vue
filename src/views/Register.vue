@@ -97,15 +97,18 @@
                             username:this.newRag.username,
                             nickname:this.newRag.nickname,
                             password:this.newRag.password,
-                            rePassword:this.newRag.rePassword,
+                            rePassword:this.newRag.repassword,
                         }).then(function(response){
                             if (response.status === 200) {
                                 vm.$elementMessage('注册成功，快去登陆吧', 'success')
+                                vm.resetForm('newRag');
+                                vm.$router.push('/login');
                             } else {
                                 vm.$elementMessage('网络错误请联系管理员', 'warning')
                             }
                         }).catch(function(error){
-                            vm.$elementMessage(error.response.data.message, 'warning')
+                            let errorInfo = error.message
+                            vm.$elementMessage(errorInfo, 'warning')
                         });
                     } else {
                         alert('有信息填写错误请重新填写');
