@@ -2,7 +2,7 @@
     <footer>
         <span class="footer-left">
             <a href="javascript:;">Mhd97.top</a>
-            © 2019
+            © 2019 mhd97.top 版权所有 桂ICP备18009232号
         </span>
         <span class="footer-right">
             Proudly Made By
