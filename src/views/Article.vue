@@ -184,7 +184,8 @@
                             replyContent:this.sendReply.replyContent,
                         }).then(function(response){
                             if (response.status === 200) {
-                                vm.$elementMessage('评论成功', 'success')
+                                vm.$elementMessage('评论成功', 'success');
+                                location.reload()
                             } else {
                                 vm.$elementMessage('网络错误请联系管理员', 'warning')
                             }

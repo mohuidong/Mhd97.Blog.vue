@@ -3,8 +3,14 @@ import store from '../store/index'
 import md5 from 'js-md5'
 import router from "../router";
 
+// 线上接口
 const baseURL =  'http://api.mhd97.top/'
 // axios.defaults.baseURL = 'http://api.mhd97.top/'
+
+// const baseURL =  'http://192.168.1.177:8822'
+// 代理：
+// axios.defaults.baseURL = '/api'
+
 
 
 // 添加响应拦截器（想改变回复再接收，就拦截response）

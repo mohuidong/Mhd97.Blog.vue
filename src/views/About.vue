@@ -6,6 +6,7 @@
             </div>
         <main>
             <div class="about-main">
+                <img  class="about-img" src="" alt="">
                 <br>
                 <h2>网站标题:{{systemData.website_title}}</h2>
                 <br>
