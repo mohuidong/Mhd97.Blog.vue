@@ -2,8 +2,8 @@
     <footer>
         <span class="footer-left">
             <a href="javascript:;">Mhd97.top</a>
-            
-            © 2019 mhd97.top 版权所有 桂ICP备18009232号
+
+            <a href="https://beian.miit.gov.cn">   © 2020 mhd97.top 版权所有 桂ICP备18009232号-1</a>
 
         </span>
         <span class="footer-right">
@@ -22,22 +22,6 @@
                 footerData:[],
             }
         },
-        // created:function () {
-        //     this.getFooterData()
-        // },
-        // methods: {
-        //     getFooterData:function () {
-        //         axios.get('/v1/system-settings?').then(
-        //             (res)=>{
-        //                 this.footerData = res.data
-        //                 this.first = false
-        //             },
-        //             ()=>{
-        //                 this.first = false
-        //             }
-        //         )
-        //     },
-        // }
     }
 </script>
 
