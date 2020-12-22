@@ -2,9 +2,7 @@
     <footer>
         <span class="footer-left">
             <a href="javascript:;">Mhd97.top</a>
-
             <a href="https://beian.miit.gov.cn">   © 2020 mhd97.top 版权所有 桂ICP备18009232号-1</a>
-
         </span>
         <span class="footer-right">
             Proudly Made By
