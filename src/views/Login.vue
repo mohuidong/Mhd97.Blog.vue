@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <el-container>
-            <el-header><router-link to="MyHome"><i class="el-icon-arrow-left"></i></router-link>欢迎登陆</el-header>
+            <el-header><router-link to="/"><i class="el-icon-arrow-left"></i></router-link>欢迎登陆</el-header>
             <el-main>
                 <el-row><img src="" alt="" width="100%"></el-row>
                 <el-form  label-width="80px" :model="loginuser" status-icon :rules="rules" ref="loginuser">

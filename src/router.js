@@ -65,8 +65,8 @@ export default new Router({
           component: () => import('./views/Forget.vue')
       },
       {
-          path: '/MyHome',
-          name: 'MyHome',
+          path: '/',
+          name: 'myHome',
           component: () => import('./views/NewHome.vue'),
       },
       {

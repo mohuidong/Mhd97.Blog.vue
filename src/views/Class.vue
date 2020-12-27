@@ -111,14 +111,10 @@
                         }
                         this.currentPage = data['_meta']['currentPage']
                         this.maxPage = data['_meta']['pageCount']
-                        this.loading = false
-                        this.first = false
                     },
-                    ()=>{
-                        this.loading = false
-                        this.first = false
-                    }
-                )
+                );
+                this.loading = false
+                this.first = false
             },
             pageTurning:function(operating){
                 switch (operating) {

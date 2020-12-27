@@ -46,7 +46,7 @@
 <script>
     import homeindex from '@/components/home/HomeIndex.vue'
     export default {
-        name: "Myhome",
+        name: "myHome",
         components: {
             homeindex,
         },
