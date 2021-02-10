@@ -165,7 +165,6 @@
                 }
                 this.fileReader.onload = () => {
                     let base64Str = this.fileReader.result
-                    console.log(base64Str)
                     axios.post('/v1/users/avatar?',{
                         img:base64Str,
                     }).then(res => {
